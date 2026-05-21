@@ -1,0 +1,82 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg:      #111111;
+  --card:    #1c1c1c;
+  --card2:   #242424;
+  --border:  #2e2e2e;
+  --text:    #efefef;
+  --muted:   #777777;
+  --accent:  #f97316;
+  --abg:     rgba(249, 115, 22, 0.1);
+  --green:   #22c55e;
+  --gbg:     rgba(34, 197, 94, 0.1);
+  --red:     #ef4444;
+  --yellow:  #eab308;
+  --blue:    #3b82f6;
+  --bbg:     rgba(59, 130, 246, 0.1);
+  --radius:  10px;
+}
+
+body {
+  background:  var(--bg);
+  color:       var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size:   15px;
+  line-height: 1.6;
+}
+
+a    { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: 'Inter', sans-serif; border: none; }
+input, select, textarea { font-family: 'Inter', sans-serif; outline: none; }
+
+/* ── Buttons ── */
+.btn {
+  display:     inline-flex;
+  align-items: center;
+  gap:         6px;
+  padding:     8px 16px;
+  border-radius: 8px;
+  font-size:   13px;
+  font-weight: 500;
+  transition:  all 0.15s;
+}
+.btn-primary  { background: var(--accent); color: white; }
+.btn-primary:hover  { background: #e8650a; transform: translateY(-1px); }
+.btn-outline  { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
+.btn-outline:hover  { border-color: var(--accent); color: var(--accent); }
+.btn-ghost    { background: transparent; color: var(--muted); }
+.btn-ghost:hover    { color: var(--text); }
+
+/* ── Form fields ── */
+.field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+.field label {
+  font-size:      11px;
+  font-weight:    600;
+  color:          var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.field input, .field select {
+  background:    var(--card2);
+  border:        1.5px solid var(--border);
+  border-radius: 8px;
+  color:         var(--text);
+  padding:       9px 3px;
+  font-size:     14px;
+  transition:    border-color 0.15s;
+}
+.field input:focus, .field select:focus { border-color: var(--accent); }
+.field input::placeholder { color: var(--muted); }
+
+/* ── Layout ── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* ── Utility ── */
+.error-msg   { color: var(--red);   font-size: 13px; margin-bottom: 10px; }
+.success-msg { color: var(--green); font-size: 13px; margin-bottom: 10px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); }

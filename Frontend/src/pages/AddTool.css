@@ -1,0 +1,46 @@
+.addtool-page { padding: 36px 0 60px; max-width: 640px; }
+
+.addtool-card  { padding: 32px; }
+.addtool-card h2  { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+.addtool-sub   { color: var(--muted); font-size: 13px; margin-bottom: 24px; }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.field textarea {
+  background:    var(--card2);
+  border:        1.5px solid var(--border);
+  border-radius: 8px;
+  color:         var(--text);
+  padding:       9px 12px;
+  font-size:     14px;
+  resize:        vertical;
+  transition:    border-color 0.15s;
+}
+.field textarea:focus        { border-color: var(--accent); outline: none; }
+.field textarea::placeholder { color: var(--muted); }
+
+.upload-box {
+  border:        2px dashed var(--border);
+  border-radius: 8px;
+  min-height:    140px;
+  display:       flex;
+  align-items:   center;
+  justify-content: center;
+  cursor:        pointer;
+  overflow:      hidden;
+  transition:    border-color 0.15s;
+}
+.upload-box:hover  { border-color: var(--accent); }
+
+.upload-placeholder { text-align: center; color: var(--muted); }
+.upload-placeholder span { font-size: 2rem; display: block; margin-bottom: 6px; }
+.upload-placeholder p    { font-size: 13px; }
+
+.img-preview { width: 100%; height: 200px; object-fit: cover; }
+
+.full-btn { width: 100%; justify-content: center; padding: 11px; font-size: 15px; margin-top: 8px; }
+.full-btn:disabled { opacity: 0.6; cursor: not-allowed; }

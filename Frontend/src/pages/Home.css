@@ -1,0 +1,59 @@
+/* Hero */
+.hero { padding: 60px 0 50px; background: linear-gradient(150deg, #111 0%, #1c0e00 100%); border-bottom: 1px solid var(--border); }
+.hero h1 { font-size: 2.2rem; font-weight: 700; line-height: 1.2; margin-bottom: 14px; }
+.hero h1 span { color: var(--accent); }
+.hero > .container > p { color: var(--muted); font-size: 15px; max-width: 500px; margin-bottom: 28px; line-height: 1.7; }
+.hero-btns { display: flex; gap: 12px; }
+
+/* Stats */
+.stats-section { border-bottom: 1px solid var(--border); }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); }
+.stat-item { background: var(--card); padding: 24px 20px; text-align: center; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.stat-item span { display: block; font-size: 26px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+
+/* Browse */
+.browse-section { padding: 40px 0; border-bottom: 1px solid var(--border); }
+.browse-top { margin-bottom: 16px; }
+.search-form { display: flex; gap: 8px; max-width: 400px; }
+.search-form input { flex: 1; background: var(--card); border: 1.5px solid var(--border); border-radius: 8px; color: var(--text); padding: 8px 12px; font-size: 14px; }
+.search-form input:focus { border-color: var(--accent); outline: none; }
+.search-form input::placeholder { color: var(--muted); }
+
+.category-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+.pill { padding: 5px 13px; border-radius: 999px; font-size: 12px; font-weight: 500; background: var(--card); border: 1.5px solid var(--border); color: var(--muted); cursor: pointer; transition: all 0.15s; }
+.pill:hover { color: var(--text); }
+.pill.active { background: var(--abg); border-color: var(--accent); color: var(--accent); }
+
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+
+/* Tool card */
+.tool-card { display: flex; flex-direction: column; overflow: hidden; transition: transform 0.2s, border-color 0.2s; cursor: pointer; }
+.tool-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+.tool-img { height: 150px; background: var(--card2); display: flex; align-items: center; justify-content: center; font-size: 3rem; position: relative; overflow: hidden; }
+.tool-img img { width: 100%; height: 100%; object-fit: cover; }
+.avail-tag { position: absolute; top: 7px; right: 7px; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 999px; text-transform: uppercase; }
+.avail-tag.green { background: var(--gbg); color: var(--green); }
+.avail-tag.red   { background: rgba(239,68,68,0.1); color: var(--red); }
+.tool-body { padding: 12px; }
+.tool-cat { font-size: 11px; font-weight: 600; color: var(--accent); background: var(--abg); padding: 2px 7px; border-radius: 999px; display: inline-block; margin-bottom: 5px; }
+.tool-body h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.tool-desc { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 10px; }
+.tool-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 8px; border-top: 1px solid var(--border); }
+.tool-city { font-size: 11px; color: var(--muted); }
+.tool-price { font-size: 15px; font-weight: 700; color: var(--accent); }
+.tool-price small { font-size: 11px; font-weight: 400; color: var(--muted); }
+
+/* Skeleton */
+.skeleton { height: 250px; background: linear-gradient(90deg, var(--card) 25%, var(--card2) 50%, var(--card) 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.empty-tools { text-align: center; padding: 50px 0; display: flex; flex-direction: column; align-items: center; gap: 14px; color: var(--muted); }
+
+/* How it works */
+.how-section { padding: 52px 0; }
+.section-label { font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px; }
+.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.step-card { padding: 22px; }
+.step-num { width: 30px; height: 30px; border-radius: 50%; background: var(--abg); color: var(--accent); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+.step-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.step-card p  { font-size: 13px; color: var(--muted); line-height: 1.6; }

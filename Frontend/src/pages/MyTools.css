@@ -1,0 +1,71 @@
+.mytools-page { padding: 32px 0 60px; }
+
+.mytools-header {
+  display:         flex;
+  justify-content: space-between;
+  align-items:     center;
+  margin-bottom:   24px;
+}
+.mytools-header h1 { font-size: 22px; font-weight: 700; margin-bottom: 3px; }
+.mytools-header p  { color: var(--muted); font-size: 13px; }
+
+.mytools-grid {
+  display:               grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap:                   16px;
+}
+
+.mytool-card { overflow: hidden; }
+
+.mytool-img {
+  height:          150px;
+  background:      var(--card2);
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  font-size:       3rem;
+  position:        relative;
+  overflow:        hidden;
+}
+.mytool-img img { width: 100%; height: 100%; object-fit: cover; }
+
+.avail-tag {
+  position:      absolute;
+  top:           8px;
+  right:         8px;
+  font-size:     10px;
+  font-weight:   700;
+  padding:       3px 9px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+.avail-tag.green { background: var(--gbg);              color: var(--green); }
+.avail-tag.red   { background: rgba(239,68,68,0.1);    color: var(--red);   }
+
+.mytool-body  { padding: 14px 14px 8px; }
+.tool-cat     { font-size: 11px; font-weight: 600; color: var(--accent); background: var(--abg); padding: 2px 8px; border-radius: 999px; display: inline-block; margin-bottom: 6px; }
+.mytool-body h3   { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.tool-city    { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+.tool-price   { font-size: 16px; font-weight: 700; color: var(--accent); }
+.tool-price span  { font-size: 12px; font-weight: 400; color: var(--muted); }
+
+.mytool-actions {
+  display:     flex;
+  gap:         8px;
+  padding:     10px 14px 14px;
+}
+.mytool-actions .btn { flex: 1; justify-content: center; font-size: 13px; padding: 7px; }
+
+.btn-danger { background: rgba(239,68,68,0.1); color: var(--red); border: 1.5px solid rgba(239,68,68,0.3); }
+.btn-danger:hover { background: var(--red); color: white; }
+
+.empty-state {
+  padding:         60px 20px;
+  text-align:      center;
+  display:         flex;
+  flex-direction:  column;
+  align-items:     center;
+  gap:             14px;
+}
+.empty-state span { font-size: 3rem; }
+.empty-state p    { color: var(--muted); font-size: 14px; }
