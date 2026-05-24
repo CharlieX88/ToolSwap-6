@@ -23,13 +23,13 @@ export default function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/"              element={<Home />} />
-          <Route path="/login"         element={<Login />} />
-          <Route path="/register"      element={<Register />} />
-          <Route path="/tools/:id"     element={<ToolDetail />} />
-          <Route path="/dashboard"     element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-          <Route path="/add-tool"      element={<PrivateRoute><AddTool /></PrivateRoute>} />
-          <Route path="/my-tools"      element={<PrivateRoute><MyTools /></PrivateRoute>} />
+          <Route path="/"                element={<Home />} />
+          <Route path="/login"           element={<Login />} />
+          <Route path="/register"        element={<Register />} />
+          <Route path="/tools/:id"       element={<ToolDetail />} />
+          <Route path="/dashboard"       element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+          <Route path="/add-tool"        element={<PrivateRoute><AddTool /></PrivateRoute>} />
+          <Route path="/my-tools"        element={<PrivateRoute><MyTools /></PrivateRoute>} />
           <Route path="/chat/:bookingId" element={<PrivateRoute><Chat /></PrivateRoute>} />
         </Routes>
       </BrowserRouter>

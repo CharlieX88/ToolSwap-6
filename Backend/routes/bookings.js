@@ -4,17 +4,13 @@ const Booking = require('../models/Booking')
 const Tool    = require('../models/Tool')
 const protect = require('../middleware/auth')
 
-// ─────────────────────────────────────────────
-// GET /api/bookings/booked-dates/:toolId
-// Public — returns array of { startDate, endDate }
-// for all confirmed/pending bookings of a tool
-// Frontend uses this to disable those dates in calendar
-// ─────────────────────────────────────────────
+// GET /api/bookings/booked-dates/:toolId — public
 router.get('/booked-dates/:toolId', async (req, res) => {
   try {
     const bookings = await Booking.find({
       tool:   req.params.toolId,
-      status: { $in: ['pending', 'confirmed'] }
+      status: { $in: ['pending', 'confirmed', 'paid', 'delivered'] }
+      // completed/cancelled/refunded wali dates free kar do
     }).select('startDate endDate -_id')
 
     res.json({ bookedRanges: bookings })
@@ -23,9 +19,7 @@ router.get('/booked-dates/:toolId', async (req, res) => {
   }
 })
 
-// ─────────────────────────────────────────────
-// GET /api/bookings/dashboard
-// ─────────────────────────────────────────────
+// GET /api/bookings/dashboard — protected
 router.get('/dashboard', protect, async (req, res) => {
   try {
     const userId = req.user._id
@@ -44,7 +38,7 @@ router.get('/dashboard', protect, async (req, res) => {
 
     const stats = {
       totalRented:     myBookings.length,
-      activeBookings:  myBookings.filter(b => b.status === 'confirmed').length,
+      activeBookings:  myBookings.filter(b => ['confirmed', 'paid', 'delivered'].includes(b.status)).length,
       pendingRequests: incomingBookings.filter(b => b.status === 'pending').length,
       myListings:      myToolsCount
     }
@@ -55,10 +49,7 @@ router.get('/dashboard', protect, async (req, res) => {
   }
 })
 
-// ─────────────────────────────────────────────
-// POST /api/bookings
-// With date conflict check
-// ─────────────────────────────────────────────
+// POST /api/bookings — naya booking create karo
 router.post('/', protect, async (req, res) => {
   try {
     const { toolId, startDate, endDate } = req.body
@@ -67,21 +58,19 @@ router.post('/', protect, async (req, res) => {
     if (!tool) return res.status(404).json({ message: 'Tool not found' })
 
     if (tool.owner.toString() === req.user._id.toString()) {
-      return res.status(400).json({ message: 'You cannot book your own tool' })
+      return res.status(400).json({ message: 'Apna khud ka tool book nahi kar sakte' })
     }
 
     const start = new Date(startDate)
     const end   = new Date(endDate)
 
     if (start >= end) {
-      return res.status(400).json({ message: 'End date must be after start date' })
+      return res.status(400).json({ message: 'End date, start date ke baad honi chahiye' })
     }
 
-    // Conflict Check:
-    // Overlap condition: existingStart < newEnd AND existingEnd > newStart
     const conflict = await Booking.findOne({
-      tool:   toolId,
-      status: { $in: ['pending', 'confirmed'] },
+      tool:      toolId,
+      status:    { $in: ['pending', 'confirmed', 'paid', 'delivered'] },
       startDate: { $lt: end   },
       endDate:   { $gt: start }
     })
@@ -108,22 +97,24 @@ router.post('/', protect, async (req, res) => {
   }
 })
 
-// ─────────────────────────────────────────────
-// PUT /api/bookings/:id/status
-// ─────────────────────────────────────────────
+// PUT /api/bookings/:id/status — owner accept/reject
 router.put('/:id/status', protect, async (req, res) => {
   try {
     const booking = await Booking.findById(req.params.id)
     if (!booking) return res.status(404).json({ message: 'Booking not found' })
 
     if (booking.owner.toString() !== req.user._id.toString()) {
-      return res.status(403).json({ message: 'Not allowed' })
+      return res.status(403).json({ message: 'Sirf owner status change kar sakta hai' })
     }
 
     const { status } = req.body
-    const allowed = ['confirmed', 'cancelled']
-    if (!allowed.includes(status)) {
+    // owner sirf pending booking ko confirm ya cancel kar sakta hai
+    if (!['confirmed', 'cancelled'].includes(status)) {
       return res.status(400).json({ message: 'Invalid status' })
+    }
+
+    if (booking.status !== 'pending') {
+      return res.status(400).json({ message: 'Sirf pending booking ka status change ho sakta hai' })
     }
 
     booking.status = status
