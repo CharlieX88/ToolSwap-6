@@ -6,10 +6,14 @@ const userSchema = new mongoose.Schema({
   email:    { type: String, required: true, unique: true },
   password: { type: String, required: true, select: false },
   phone:    { type: String },
-  city:     { type: String }
+  city:     { type: String },
+
+  // Email verification fields
+  isVerified: { type: Boolean, default: false },  // verified hai ya nahi
+  otp:        { type: String },                   // hashed OTP store hoga
+  otpExpiry:  { type: Date }                      // OTP kab expire hoga
 }, { timestamps: true })
 
-// next hata do — async/await ke saath next ki zaroorat nahi
 userSchema.pre('save', async function () {
   if (!this.isModified('password')) return
   this.password = await bcrypt.hash(this.password, 10)

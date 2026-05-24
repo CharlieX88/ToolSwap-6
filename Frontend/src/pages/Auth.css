@@ -13,8 +13,7 @@
 .auth-top h2     { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
 .auth-top p      { color: var(--muted); font-size: 13px; }
 
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
+.two-col  { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .full-btn { width: 100%; justify-content: center; padding: 11px; font-size: 14px; margin-top: 4px; }
 .full-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
@@ -22,10 +21,9 @@
 .auth-switch a { color: var(--accent); font-weight: 500; }
 .auth-switch a:hover { text-decoration: underline; }
 
-/* university domain restriction notice */
 .domain-notice {
-  background:    rgba(59, 130, 246, 0.08);
-  border:        1px solid rgba(59, 130, 246, 0.25);
+  background:    rgba(59,130,246,0.08);
+  border:        1px solid rgba(59,130,246,0.25);
   border-radius: 8px;
   padding:       10px 14px;
   font-size:     12px;
@@ -34,3 +32,58 @@
   line-height:   1.5;
 }
 .domain-notice strong { font-weight: 700; }
+
+.otp-notice {
+  background:    var(--card2);
+  border:        1px solid var(--border);
+  border-radius: 8px;
+  padding:       10px 14px;
+  font-size:     12px;
+  color:         var(--muted);
+  margin-bottom: 20px;
+  line-height:   1.5;
+  text-align:    center;
+}
+
+.otp-input {
+  text-align:     center !important;
+  font-size:      28px !important;
+  font-weight:    700 !important;
+  letter-spacing: 12px;
+  padding:        14px !important;
+}
+
+.resend-row {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             8px;
+  margin-top:      16px;
+  font-size:       13px;
+  color:           var(--muted);
+}
+.resend-btn {
+  background: none;
+  border:     none;
+  color:      var(--accent);
+  font-size:  13px;
+  font-weight: 600;
+  cursor:     pointer;
+  padding:    0;
+}
+.resend-btn:hover { text-decoration: underline; }
+.resend-timer { color: var(--muted); font-size: 12px; }
+
+.back-link {
+  display:    block;
+  text-align: center;
+  margin-top: 12px;
+  background: none;
+  border:     none;
+  color:      var(--muted);
+  font-size:  12px;
+  cursor:     pointer;
+}
+.back-link:hover { color: var(--text); }
+
+.success-msg { color: var(--green); font-size: 13px; margin-top: 8px; }
